@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TaskHub</string>
+    <string name="username">Никнейм</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="registration">Регистрация</string>
+    <string name="confirm_password">Подтвердить пароль</string>
+    <string name="email">Email</string>
+</resources>
