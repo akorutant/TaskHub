@@ -35,7 +35,7 @@
         android:id="@+id/buttonLoginGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login with Google"/>
+        android:text="@string/login_with_google"/>
 
     <Button
         android:id="@+id/buttonRegistration"
