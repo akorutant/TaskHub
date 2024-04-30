@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "89786947526",
+    "firebase_url": "https://taskhub-b84c7-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "taskhub-b84c7",
     "storage_bucket": "taskhub-b84c7.appspot.com"
   },
@@ -21,6 +22,35 @@
             "certificate_hash": "7fd938bced0f3e58f499c8568364f551133c1613"
           }
         },
+        {
+          "client_id": "89786947526-cig85fo2gltn5850np58m9b9ec4qde27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADvmDln7V_Yc5Em3SRlyCqZ2YPHnUumAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89786947526-cig85fo2gltn5850np58m9b9ec4qde27.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89786947526:android:1d4e61e4887676493804c7",
+        "android_client_info": {
+          "package_name": "com.project.taskhub2"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "89786947526-cig85fo2gltn5850np58m9b9ec4qde27.apps.googleusercontent.com",
           "client_type": 3
