@@ -5,27 +5,27 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/taskTitle"
+        android:id="@+id/taskTitleEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Task Title" />
+        android:hint="@string/task_title" />
 
     <EditText
-        android:id="@+id/taskDescription"
+        android:id="@+id/taskDescriptionEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Task Description" />
+        android:hint="@string/task_description" />
 
-    <Spinner
-        android:id="@+id/taskPriority"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+<!--    <Spinner-->
+<!--        android:id="@+id/taskPriority"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Submit Task" />
+        android:text="@string/submit_task" />
 
 </LinearLayout>
