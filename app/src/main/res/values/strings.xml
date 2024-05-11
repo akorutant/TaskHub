@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TaskHub2</string>
+    <string name="task_name">Название</string>
+    <string name="task_creation_header">Новая задача</string>
+    <string name="task_description">Описание</string>
+    <string name="create_task_button">Создать</string>
 </resources>
