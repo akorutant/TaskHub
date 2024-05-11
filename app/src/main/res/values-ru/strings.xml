@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TaskHub</string>
+    <string name="create_task_button">Создать</string>
     <string name="login_via_google">Войти с помощью Google</string>
     <string name="task_title">Названиие задачи</string>
-    <string name="task_description">Описание задачи</string>
+    <string name="task_name">Название</string>
+    <string name="task_creation_header">Новая задача</string>
+    <string name="task_description">Описание</string>
     <string name="submit_task">Подтвердить</string>
 </resources>

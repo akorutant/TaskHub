@@ -1,47 +1,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@color/background">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/BackgroundLayout"
+    >
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/secondary" />
+        app:cardCornerRadius="5dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_creation_header"
-        android:textSize="25sp"
-        android:textColor="@color/primary"/>
+        <LinearLayout style="@style/CardLayout">
 
-    <EditText
-        android:id="@+id/taskTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/task_name"
-        android:textColor="@color/main_text"
-        />
+            <TextView style="@style/HeaderTextView"
+                android:text="@string/task_creation_header" />
 
-    <EditText
-        android:id="@+id/taskDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/task_description" />
+            <EditText style="@style/EditTextStyle"
+                android:id="@+id/taskTitle" />
 
-    </LinearLayout>
+            <EditText style="@style/EditTextStyle"
+                android:id="@+id/taskDescription" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
-
-    <Button
+    <Button style="@style/PrimaryButton"
         android:id="@+id/submitButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/create_task_button"
-        android:backgroundTint="@color/primary"
-        android:layout_marginVertical="15dp" />
+        android:text="@string/create_task_button" />
+
 
 </LinearLayout>
