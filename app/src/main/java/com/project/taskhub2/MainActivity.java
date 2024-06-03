@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycleView);
         TaskAdapter taskAdapter = new TaskAdapter(this, tasks);
         recyclerView.setAdapter(taskAdapter);
+
     }
 
     @Override

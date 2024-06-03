@@ -18,4 +18,9 @@
     <string name="limit_of_members">Limit of members</string>
     <string name="error_sign_in">Failed or cancelled</string>
     <string name="signed_in">You are signed in</string>
+    <string name="task_completed">Task Completed</string>
+    <string name="edit_task">Edit task</string>
+    <string name="take_this_task">Take this task</string>
+    <string name="edit_task_header">Edit task</string>
+    <string name="confirm_changes">Confirm changes</string>
 </resources>

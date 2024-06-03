@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/BackgroundLayout"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout style="@style/CardLayout">
+
+            <TextView style="@style/HeaderTextView"
+                android:text="@string/edit_task_header" />
+
+            <EditText style="@style/EditTextStyle"
+                android:id="@+id/taskTitle"
+                android:hint="@string/task_name"
+                android:backgroundTint="@color/text_muted"
+                />
+
+            <EditText style="@style/EditTextStyle"
+                android:id="@+id/taskDescription"
+                android:hint="@string/task_description"
+                android:backgroundTint="@color/text_muted"
+                android:inputType="textMultiLine"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button style="@style/PrimaryButton"
+        android:id="@+id/submitButton"
+        android:text="@string/confirm_changes" />
+
+
+</LinearLayout>

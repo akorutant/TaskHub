@@ -51,5 +51,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskDescription = view.findViewById(R.id.taskDescription);
             taskGroup = view.findViewById(R.id.taskGroup);
         }
+
     }
+
+
 }

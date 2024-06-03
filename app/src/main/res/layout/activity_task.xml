@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/BackgroundLayout">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task Name"
+        style="@style/HeaderTextView"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="@string/task_description"
+        android:layout_marginBottom="3dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DescriptionDescriptionDes criptionDescri ptionDescriptionDescriptionDescriptionDescriptionDescriptionDes criptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
+        android:textSize="20dp"
+        android:textColor="@color/text_muted"
+        android:layout_marginBottom="10dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/BackgroundLayout"
+            android:background="@color/secondary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Эту задачу уже выполняет другой пользователь"
+                android:textColor="@color/text_muted"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="> max20060901"
+                android:textColor="@color/text_muted"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/CheckedPeudoCheckBox"
+        android:text="@string/take_this_task"
+        android:textColor="@color/background"
+        app:icon="@drawable/finger_icon"
+        app:iconSize="30dp"
+        app:iconGravity="textStart"
+        app:iconTint="@color/background"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="5dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/PrimaryButton"
+            android:text="@string/task_completed"
+            app:icon="@drawable/complete_icon"
+            app:iconTint="@color/background"
+            app:iconSize="30dp"
+            android:layout_marginRight="5dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/PrimaryButton"
+            android:text="@string/edit_task"
+            app:icon="@drawable/edit"
+            app:iconTint="@color/background"
+            app:iconSize="30dp"
+            android:layout_marginLeft="5dp" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

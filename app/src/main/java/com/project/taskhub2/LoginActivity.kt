@@ -60,7 +60,7 @@ class LoginActivity: AppCompatActivity() {
     private fun getClient(): GoogleSignInClient {
         val gso = GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("49143596770-0c0cgd8tjimdr9esa10m0r3vagef0btn.apps.googleusercontent.com")
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
 
@@ -76,6 +76,8 @@ class LoginActivity: AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if(it.isSuccessful) {
+                startActivity(Intent(context, MainActivity::class.java))
+                Toast.makeText(context, "Добро пожаловать!", Toast.LENGTH_SHORT).show()
                 Log.i("Auth Google", "successful")
             } else {
                 Log.i("Auth Google", "failed")

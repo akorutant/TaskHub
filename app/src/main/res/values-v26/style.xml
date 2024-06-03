@@ -18,6 +18,34 @@
         <item name="android:background">@drawable/primary_button</item>
     </style>
 
+    <style name="PeudoCheckBox" parent="@style/Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginVertical">10dp</item>
+        <item name="android:textColor">@color/background</item>
+        <item name="backgroundTint">@color/checkbox_button</item>
+        <item name="android:background">@drawable/peudo_checkbox</item>
+    </style>
+
+    <style name="CheckedPeudoCheckBox" parent="@style/Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginVertical">10dp</item>
+        <item name="android:textColor">@color/checkbox_button_checked</item>
+        <item name="backgroundTint">@color/checkbox_button_checked</item>
+        <item name="android:background">@drawable/peudo_checkbox</item>
+    </style>
+
+    <style name="Button" parent="@style/Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginVertical">10dp</item>
+        <item name="android:textColor">@color/background</item>
+    </style>
+
     <style name="BackgroundLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

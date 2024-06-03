@@ -10,4 +10,7 @@
     <color name="text_muted">#9AA3A3A3</color>
     <color name="full_opacity">#00000000</color>
     <color name="danger">#D3F44336</color>
+    <color name="warning">#FFEB3B</color>
+    <color name="checkbox_button">#DA656565</color>
+    <color name="checkbox_button_checked">#4CAF50</color>
 </resources>

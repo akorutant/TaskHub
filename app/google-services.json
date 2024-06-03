@@ -1,71 +1,41 @@
 {
   "project_info": {
-    "project_number": "89786947526",
-    "firebase_url": "https://taskhub-b84c7-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "taskhub-b84c7",
-    "storage_bucket": "taskhub-b84c7.appspot.com"
+    "project_number": "61424145322",
+    "project_id": "taskhub2-3372d",
+    "storage_bucket": "taskhub2-3372d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:89786947526:android:fb212ae97cc3515b3804c7",
-        "android_client_info": {
-          "package_name": "com.example.taskhub"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "89786947526-08729f31qj2iasruuh2hvvijqv8vvk3v.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.taskhub",
-            "certificate_hash": "7fd938bced0f3e58f499c8568364f551133c1613"
-          }
-        },
-        {
-          "client_id": "89786947526-cig85fo2gltn5850np58m9b9ec4qde27.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyADvmDln7V_Yc5Em3SRlyCqZ2YPHnUumAA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "89786947526-cig85fo2gltn5850np58m9b9ec4qde27.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:89786947526:android:1d4e61e4887676493804c7",
+        "mobilesdk_app_id": "1:61424145322:android:d0a058577c3cbfbcff51d3",
         "android_client_info": {
           "package_name": "com.project.taskhub2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "89786947526-cig85fo2gltn5850np58m9b9ec4qde27.apps.googleusercontent.com",
+          "client_id": "61424145322-ai37emiligq8pe86l240dspeupacr3ul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.taskhub2",
+            "certificate_hash": "9242174c2d25b7a0fdd7fd6e4d60c8770fbb2cee"
+          }
+        },
+        {
+          "client_id": "61424145322-3b2saf3pst82tutlruauojuq14190fbj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyADvmDln7V_Yc5Em3SRlyCqZ2YPHnUumAA"
+          "current_key": "AIzaSyAM3At2j5TyCwnZ7CJr_wx8rCfm8X_J1sE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "89786947526-cig85fo2gltn5850np58m9b9ec4qde27.apps.googleusercontent.com",
+              "client_id": "61424145322-3b2saf3pst82tutlruauojuq14190fbj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
