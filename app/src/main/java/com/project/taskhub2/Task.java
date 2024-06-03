@@ -13,6 +13,10 @@ public class Task {
     Boolean completed;
     Date deadline;
 
+    Boolean isSelect = false;
+
+    User worker;
+
     public Task(String id, String name, String text, User author, Group group) {
         this.id = id;
         this.name = name;
@@ -82,5 +86,21 @@ public class Task {
 
     public Boolean getCompleted() {
         return completed;
+    }
+
+    public Boolean getSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(Boolean select) {
+        isSelect = select;
+    }
+
+    public User getWorker() {
+        return worker;
+    }
+
+    public void setWorker(User worker) {
+        this.worker = worker;
     }
 }

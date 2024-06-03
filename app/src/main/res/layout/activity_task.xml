@@ -6,6 +6,7 @@
     style="@style/BackgroundLayout">
 
     <TextView
+        android:id="@+id/taskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Task Name"
@@ -22,9 +23,10 @@
         />
 
     <TextView
+        android:id="@id/taskDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DescriptionDescriptionDes criptionDescri ptionDescriptionDescriptionDescriptionDescriptionDescriptionDes criptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
+        android:text="Some description"
         android:textSize="20dp"
         android:textColor="@color/text_muted"
         android:layout_marginBottom="10dp"/>
@@ -35,6 +37,7 @@
         app:cardCornerRadius="5dp">
 
         <LinearLayout
+            android:id="@+id/workerLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             style="@style/BackgroundLayout"
@@ -46,15 +49,16 @@
                 android:text="Эту задачу уже выполняет другой пользователь"
                 android:textColor="@color/text_muted"/>
             <TextView
+                android:id="@+id/workerInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="> max20060901"
                 android:textColor="@color/text_muted"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/takeTaskButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/CheckedPeudoCheckBox"
@@ -73,6 +77,7 @@
         android:paddingVertical="5dp">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/taskCompletedButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -84,6 +89,7 @@
             android:layout_marginRight="5dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/editTaskButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

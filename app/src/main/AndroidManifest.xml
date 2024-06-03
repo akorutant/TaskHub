@@ -23,6 +23,8 @@
         </activity>
         <activity android:name=".CreateTaskActivity"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".TaskActivity"/>
+        <activity android:name=".EditTaskActivity"/>
 
 
     </application>

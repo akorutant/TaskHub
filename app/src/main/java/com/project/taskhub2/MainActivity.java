@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,6 +13,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -46,6 +48,24 @@ public class MainActivity extends AppCompatActivity {
         TaskAdapter taskAdapter = new TaskAdapter(this, tasks);
         recyclerView.setAdapter(taskAdapter);
 
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Task selectedTask = tasks.get(position);
+                        Gson gson = new Gson();
+                        String taskJson = gson.toJson(selectedTask);
+
+                        Intent intent = new Intent(getApplicationContext(), TaskActivity.class);
+                        intent.putExtra("task_info", taskJson);
+                        startActivity(intent);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        Log.i("ESHKEREEE", " LONG!!!!!!! click on item)");
+                    }
+                })
+        );
+
     }
 
     @Override
@@ -66,13 +86,20 @@ public class MainActivity extends AppCompatActivity {
         Group gr1 = new Group("1", "gr1", user1);
         Group gr2 = new Group("2", "gr2 team", user1);
 
-        tasks.add(new Task("1", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user1, gr1));
+        tasks.add(new Task("1", "СЕРЬЕЗНО", "Текст задачи для теста", user1, gr1));
         tasks.add(new Task("2", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user2, gr1));
-        tasks.add(new Task("3", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr2));
-        tasks.add(new Task("4", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user2, gr2));
-        tasks.add(new Task("5", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr1));
-        tasks.add(new Task("6", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user1, gr1));
-        tasks.add(new Task("7", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr1));
+        Task taskTest = tasks.get(1);
+        taskTest.setSelect(true);
+        taskTest.setWorker(user3);
+
+        tasks.add(new Task("3", "Тест реадктирования", "дота2", user2, gr1));
+
+
+//        tasks.add(new Task("3", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr2));
+//        tasks.add(new Task("4", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user2, gr2));
+//        tasks.add(new Task("5", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr1));
+//        tasks.add(new Task("6", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user1, gr1));
+//        tasks.add(new Task("7", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr1));
 
     }
 
