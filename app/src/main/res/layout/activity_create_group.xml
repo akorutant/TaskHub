@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/BackgroundLayout"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout style="@style/CardLayout">
+
+            <TextView style="@style/HeaderTextView"
+                android:text="@string/new_group" />
+
+            <EditText style="@style/EditTextStyle"
+                android:id="@+id/groupTitle"
+                android:hint="@string/group_name"
+                android:backgroundTint="@color/text_muted"
+                />
+
+            <EditText style="@style/EditTextStyle"
+                android:id="@+id/groupBio"
+                android:hint="@string/group_s_bio"
+                android:backgroundTint="@color/text_muted"
+                android:inputType="textMultiLine"
+                />
+
+            <EditText style="@style/EditTextStyle"
+                android:id="@+id/groupMembersCount"
+                android:hint="@string/limit_of_members"
+                android:inputType="number"
+                android:backgroundTint="@color/text_muted"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button style="@style/PrimaryButton"
+        android:id="@+id/submitButton"
+        android:text="@string/create_task_button" />
+
+
+</LinearLayout>

@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/BackgroundLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="16dp">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <Button
+    <TextView
+        style="@style/HeaderTextView"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/app_taskhub"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonLoginGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_via_google"/>
-
+        style="@style/PrimaryButton"
+        app:icon="@drawable/google_icon"
+        app:iconTint="@color/black"
+        app:iconSize="30dp"
+        app:iconGravity="textStart"
+        android:text="@string/login_via_google_text"/>
 </LinearLayout>
