@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_nav);
         setNewFragment(new MainFragment());
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+
+        bottomNavigationView.setSelectedItemId(R.id.nav_main);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     setNewFragment(new MainFragment());
                 }
                 else if (item.getItemId() == R.id.nav_groups) {
-                    setNewFragment(new GroupFragment());
+                    setNewFragment(new MyGroupsFragment());
                 }
                 else {
                     return false;

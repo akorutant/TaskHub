@@ -9,10 +9,15 @@ public class Group {
     User[] users;
     Image image;
 
+    public String getId() {
+        return id;
+    }
+
     public Group(String id, String name, User owner) {
         this.id = id;
         this.name = name;
         this.owner = owner;
+        this.users = new User[]{this.owner};
     }
 
     public Group(String id, String name, User owner, User[] users) {
