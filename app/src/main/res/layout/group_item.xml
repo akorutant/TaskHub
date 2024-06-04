@@ -69,11 +69,13 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_weight="1">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/group_icon"
-                                android:layout_marginHorizontal="5dp"/>
+                                android:layout_marginHorizontal="5dp"
+                                android:src="@drawable/group_icon" />
+
                             <TextView
                                 android:id="@+id/people_count_tv"
                                 android:layout_width="wrap_content"
@@ -82,7 +84,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="end|center"
                                 android:textSize="20sp"
-                                android:textColor="@color/text_muted"
+                                android:textColor="@color/main_text"
                                 android:textStyle="bold"/>
 
                         </LinearLayout>
@@ -103,7 +105,8 @@
                                 android:text="34"/>
                             <TextView
                                 style="@style/InfoTextView"
-                                android:text=" | "/>
+                                android:text=" | "
+                                android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/tasks_to_complete_count_tv"
                                 android:layout_width="wrap_content"
@@ -122,17 +125,9 @@
 
                 </androidx.cardview.widget.CardView>
 
-
-
-
-
-
             </LinearLayout>
 
-
         </LinearLayout>
-
-
 
     </androidx.cardview.widget.CardView>
 
