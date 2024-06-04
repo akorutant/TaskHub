@@ -24,7 +24,7 @@ public class GroupFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_group, container, false);
 
-        // TODO: сделать логику переключения pager между фрагментами
+        // TODO: сделать логику переключения pager между фрагментами ок там на самом деле 80% простые но за 2 дня вряд ли упеешь все разобрать
 
         return v;
     }
