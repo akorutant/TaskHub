@@ -119,8 +119,6 @@ public class MyGroupsFragment extends Fragment {
             }
         });
 
-
-
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,9 +126,14 @@ public class MyGroupsFragment extends Fragment {
             }
         });
 
+        joinBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), JoinGroupActivity.class));
+            }
+        });
 
-
-
+        
         return v;
     }
 

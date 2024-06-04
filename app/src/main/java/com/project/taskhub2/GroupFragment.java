@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -26,9 +28,12 @@ public class GroupFragment extends Fragment {
     FrameLayout frameLayout;
     TextView groupName;
     String groupId;
-    FloatingActionButton createTaskButton;
+    FloatingActionButton createTaskButton, logoutGroupBtn, optionsBtn;
+
+    Animation rotateOpen, rotateClose, toBottom, fromBottom;
 
     ArrayList<User> users;
+    boolean clicked;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,13 +52,34 @@ public class GroupFragment extends Fragment {
             bundle1.putStringArrayList("userIds", userIds);
         }
 
+        rotateClose = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_cloe_anim);
+        rotateOpen = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_open_anim);
+        fromBottom = AnimationUtils.loadAnimation(getContext(), R.anim.from_bottom_anim);
+        toBottom = AnimationUtils.loadAnimation(getContext(), R.anim.to_bottom_anim);
+
+        optionsBtn = v.findViewById(R.id.groupOptionsBtn);
+        logoutGroupBtn = v.findViewById(R.id.logoutGroupBtn);
         createTaskButton = v.findViewById(R.id.createTask);
+        clicked = false;
+
+        optionsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsButtonClicked();
+            }
+        });
         createTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CreateTaskActivity.class);
                 intent.putExtra("groupId", groupId);
                 startActivity(intent);
+            }
+        });
+        logoutGroupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: сделать выход из группы (ЕСЛИ ЭТО ВЛАДЕЛЕЦ - УДАЛЯТЬ ГРУППУ К .!.-уям собачьим
             }
         });
 
@@ -69,5 +95,31 @@ public class GroupFragment extends Fragment {
         users.add(user1);
         users.add(user2);
         users.add(user3);
+    }
+
+    private void onOptionsButtonClicked() {
+        setVisibility(clicked);
+        setAnimation(clicked);
+        clicked = !clicked;
+    }
+    private void setVisibility(boolean clicked) {
+        if (!clicked) {
+            createTaskButton.setVisibility(View.VISIBLE);
+            logoutGroupBtn.setVisibility(View.VISIBLE);
+        } else {
+            createTaskButton.setVisibility(View.INVISIBLE);
+            logoutGroupBtn.setVisibility(View.INVISIBLE);
+        }
+    }
+    private void setAnimation(boolean clicked) {
+        if (!clicked) {
+            createTaskButton.startAnimation(fromBottom);
+            logoutGroupBtn.startAnimation(fromBottom);
+            optionsBtn.startAnimation(rotateOpen);
+        } else {
+            createTaskButton.startAnimation(toBottom);
+            logoutGroupBtn.startAnimation(toBottom);
+            optionsBtn.startAnimation(rotateClose);
+        }
     }
 }
