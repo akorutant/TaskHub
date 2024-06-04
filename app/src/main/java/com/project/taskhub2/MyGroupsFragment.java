@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -33,6 +34,14 @@ public class MyGroupsFragment extends Fragment {
         groupsAdapter = new GroupAdapter(this.getContext(), groups);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(groupsAdapter);
+        FloatingActionButton createOrJoinGroup = v.findViewById(R.id.createOrJoinGroup);
+
+        createOrJoinGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), CreateGroupActivity.class));
+            }
+        });
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this.getContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
@@ -43,6 +52,7 @@ public class MyGroupsFragment extends Fragment {
                         for (User user: selectedGroup.users) userIdArray.add(user.getId());
 
                         Bundle bundle = new Bundle();
+                        bundle.putString("groupId", selectedGroup.id);
                         bundle.putString("groupName", selectedGroup.name);
                         bundle.putStringArrayList("usersId", userIdArray);
 
@@ -65,22 +75,6 @@ public class MyGroupsFragment extends Fragment {
     }
 
     private void setInitialData(){
-
-        User user1 = new User("1", "user1", "mail@mail.ma");
-        User user2 = new User("2", "user222", "maiffl@madfsil.ma");
-        User user3 = new User("3", "user33333", "fdfd@mafdsfil.ma");
-
-        Group gr1 = new Group("1", "gr1", user1);
-        Group gr2 = new Group("2", "gr2 team", user1);
-        Group gr3 = new Group("2", "gr433333team", user2, new User[]{user1, user2});
-        Group gr4 = new Group("2", "gr44444eam", user1);
-        Group gr5 = new Group("2", "g5r55m", user3);
-
-        groups.add(gr1);
-        groups.add(gr2);
-        groups.add(gr3);
-        groups.add(gr4);
-        groups.add(gr5);
 
     }
 }

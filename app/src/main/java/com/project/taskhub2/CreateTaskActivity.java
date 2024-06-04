@@ -15,11 +15,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CreateTaskActivity extends AppCompatActivity {
     EditText taskTitle, taskDescription;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference userRef = database.getReference("User ");
+    DatabaseReference taskRef = database.getReference("Task");
+    DatabaseReference groupRef = database.getReference("Group");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +81,38 @@ public class CreateTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (taskTitle.getText().toString().length() >= 4 && taskDescription.getText().toString().length() >= 8) {
-                    HashMap<String, String> creationData = new HashMap<String, String>();
-                    creationData.put("taskTitle", taskTitle.getText().toString());
-                    creationData.put("taskDescription", taskDescription.getText().toString());
+                    String groupId = getIntent().getStringExtra("groupId");
 
-                    Log.i("CREATED", "New Task Created: " + taskTitle.getText() + " " + taskDescription.getText());
+                    DatabaseReference groupRef = FirebaseDatabase.getInstance().getReference("Group");
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    assert firebaseUser != null;
+                    String userId = firebaseUser.getUid();
+                    String userName = firebaseUser.getDisplayName();
+                    String userEmail = firebaseUser.getEmail();
+                    User user =  new User(userId, userName, userEmail);
 
-                    Intent i = new Intent();
-                    i.putExtra("creationData", creationData);
-                    setResult(RESULT_OK, i);
-                    finish();
+                    String taskId = taskRef.push().getKey();
+
+                    groupRef.child(groupId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Group group = dataSnapshot.getValue(Group.class);
+                            Task task = new Task(taskId, taskTitle.getText().toString(), taskDescription.getText().toString(), user, group);
+
+                            assert taskId != null;
+                            taskRef.child(taskId).setValue(task);
+
+                            Intent intent = new Intent();
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.e("CreateTaskActivity", "Failed to read group data", databaseError.toException());
+                        }
+                    });
+
                 }
                 else {
                     Log.i("FAIL", "Task Creation Fail: ");

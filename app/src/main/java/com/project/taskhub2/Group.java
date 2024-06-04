@@ -1,26 +1,36 @@
 package com.project.taskhub2;
 
-import android.media.Image;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Group {
     String id;
     String name;
+    String description;
     User owner;
-    User[] users;
-    Image image;
+    List<User> users;
+    int membersCount;
+    String slug;
 
-    public Group(String id, String name, User owner) {
+    public Group(String id, String name, String description, User owner, int membersCount, String slug) {
         this.id = id;
         this.name = name;
         this.owner = owner;
-        this.users = new User[]{this.owner};
+        this.description = description;
+        this.membersCount = membersCount;
+        this.slug = slug;
+        this.users = new ArrayList<>();
+        this.users.add(this.owner);
     }
 
-    public Group(String id, String name, User owner, User[] users) {
+    public Group(String id, String name, String description, User owner, int membersCount, String slug, List<User> users) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.owner = owner;
         this.users = users;
+        this.membersCount = membersCount;
+        this.slug = slug;
     }
 
     public String getName() {
@@ -39,11 +49,11 @@ public class Group {
         this.owner = owner;
     }
 
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(User[] users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
@@ -53,5 +63,29 @@ public class Group {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getMembersCount() {
+        return membersCount;
+    }
+
+    public void setMembersCount(int membersCount) {
+        this.membersCount = membersCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 }

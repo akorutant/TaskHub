@@ -25,6 +25,7 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".TaskActivity"/>
         <activity android:name=".EditTaskActivity"/>
+        <activity android:name=".CreateGroupActivity"/>
 
 
     </application>

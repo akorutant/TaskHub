@@ -1,5 +1,6 @@
 package com.project.taskhub2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -22,6 +25,8 @@ public class GroupFragment extends Fragment {
     TabLayout tabLayout;
     FrameLayout frameLayout;
     TextView groupName;
+    String groupId;
+    FloatingActionButton createTaskButton;
 
     ArrayList<User> users;
 
@@ -35,11 +40,22 @@ public class GroupFragment extends Fragment {
         if (bundle != null) {
             groupName = v.findViewById(R.id.group_name_tv);
             groupName.setText(Objects.requireNonNull(bundle.get("groupName")).toString());
+            groupId = bundle.getString("groupId");
             ArrayList<String> userIds = (ArrayList<String>) bundle.get("usersId");
 
             Bundle bundle1 = new Bundle();
             bundle1.putStringArrayList("userIds", userIds);
         }
+
+        createTaskButton = v.findViewById(R.id.createTask);
+        createTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CreateTaskActivity.class);
+                intent.putExtra("groupId", groupId);
+                startActivity(intent);
+            }
+        });
 
         // TODO: сделать логику переключения pager между фрагментами
 

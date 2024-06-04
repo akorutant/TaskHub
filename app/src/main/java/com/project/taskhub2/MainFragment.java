@@ -61,6 +61,6 @@ public class MainFragment extends Fragment {
     }
 
     private void setInitialData(){
-        
+
     }
 }

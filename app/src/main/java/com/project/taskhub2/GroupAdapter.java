@@ -47,7 +47,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         Group group = groups.get(position);
 
         holder.groupName.setText(group.getName());
-        holder.peopleCount.setText(String.valueOf(group.users.length));
+        holder.peopleCount.setText(String.valueOf(group.users.size()));
 
 //        List<Task> filteredTasks = groupTasks.stream()
 //                .filter(task -> task.getGroup().getId().equals(group.getId()))
