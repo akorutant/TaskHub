@@ -13,4 +13,5 @@
     <color name="warning">#FFEB3B</color>
     <color name="checkbox_button">#DA656565</color>
     <color name="checkbox_button_checked">#4CAF50</color>
+    <color name="primary_opacity">#8A5D898B</color>
 </resources>

@@ -24,4 +24,10 @@
     <string name="take_this_task">Взять задачу</string>
     <string name="edit_task_header">Изменение задачи</string>
     <string name="confirm_changes">Подтвердить изменения</string>
+    <string name="hello_blank_fragment">Привет епта</string>
+    <string name="settings">Настройки</string>
+    <string name="main_menu">Менюшечка :3</string>
+    <string name="groups">Группы</string>
+    <string name="tasks">Задачки ^^</string>
+    <string name="members">Котятки UwU</string>
 </resources>

@@ -1,75 +1,77 @@
 package com.project.taskhub2;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.FrameLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.Gson;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    public ArrayList<Task> tasks = new ArrayList<Task>();
-    FloatingActionButton createTaskButton;
 
+    BottomNavigationView bottomNavigationView;
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null) startActivity(new Intent(this, LoginActivity.class));
-
-        createTaskButton = findViewById(R.id.createTask);
-        createTaskButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), CreateTaskActivity.class));
-            }
-        });
 
         // init Firebase Database
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference();
 
-        setInitialData();
-        RecyclerView recyclerView = findViewById(R.id.recycleView);
-        TaskAdapter taskAdapter = new TaskAdapter(this, tasks);
-        recyclerView.setAdapter(taskAdapter);
-
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        Task selectedTask = tasks.get(position);
-                        Gson gson = new Gson();
-                        String taskJson = gson.toJson(selectedTask);
-
-                        Intent intent = new Intent(getApplicationContext(), TaskActivity.class);
-                        intent.putExtra("task_info", taskJson);
-                        startActivity(intent);
-                    }
-
-                    @Override public void onLongItemClick(View view, int position) {
-                        Log.i("ESHKEREEE", " LONG!!!!!!! click on item)");
-                    }
-                })
-        );
-
+        bottomNavigationView = findViewById(R.id.bottom_nav);
+        setNewFragment(new MainFragment());
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.nav_settings) {
+                    setNewFragment(new GroupFragment());
+                }
+                else if (item.getItemId() == R.id.nav_main) {
+                    setNewFragment(new MainFragment());
+                }
+                else if (item.getItemId() == R.id.nav_groups) {
+                    setNewFragment(new GroupFragment());
+                }
+                else {
+                    return false;
+                }
+                return true;
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case RESULT_OK:
                 HashMap<String, String> newTask = (HashMap<String, String>) data.getSerializableExtra("creationData");
@@ -77,30 +79,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setInitialData(){
-
-        User user1 = new User("1", "user1", "mail@mail.ma");
-        User user2 = new User("2", "user222", "maiffl@madfsil.ma");
-        User user3 = new User("3", "user33333", "fdfd@mafdsfil.ma");
-
-        Group gr1 = new Group("1", "gr1", user1);
-        Group gr2 = new Group("2", "gr2 team", user1);
-
-        tasks.add(new Task("1", "СЕРЬЕЗНО", "Текст задачи для теста", user1, gr1));
-        tasks.add(new Task("2", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user2, gr1));
-        Task taskTest = tasks.get(1);
-        taskTest.setSelect(true);
-        taskTest.setWorker(user3);
-
-        tasks.add(new Task("3", "Тест реадктирования", "дота2", user2, gr1));
-
-
-//        tasks.add(new Task("3", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr2));
-//        tasks.add(new Task("4", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user2, gr2));
-//        tasks.add(new Task("5", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr1));
-//        tasks.add(new Task("6", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user1, gr1));
-//        tasks.add(new Task("7", "Что-то сделать ээ", "аовылмроролруолкруцоролровыарвыоаротмсчолмтолраолыр", user3, gr1));
-
+    private void setNewFragment(Fragment fragment) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout, fragment);
+        ft.commit();
     }
-
 }
