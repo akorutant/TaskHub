@@ -31,4 +31,18 @@
     <string name="tasks">Задачки ^^</string>
     <string name="members">Котятки UwU</string>
     <string name="go_to_the_group">Войти</string>
+    <string name="logout">Выйти</string>
+    <string name="create_new_group_or_join">Создать группу или войти</string>
+    <string name="create_new_group">Создать группу</string>
+    <string name="join_group">Войти в группу</string>
+    <string name="logout_btn">Выйти</string>
+    <string name="options">Настройки</string>
+    <string name="enter_the_group">Войти в группу</string>
+    <string name="enter_the_invite_code">Ввести инвайт-код</string>
+    <string name="enter">Войти</string>
+    <string name="create_task">Создать задачу</string>
+    <string name="already_in_group">Вы уже находитесь в этой группе!</string>
+    <string name="to_many_group_users">Группа заполнена!</string>
+    <string name="not_found_group">Группа не найдена!</string>
+    <string name="code_empty">Вы не указали код!</string>
 </resources>

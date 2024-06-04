@@ -53,7 +53,7 @@ public class CreateGroupActivity extends AppCompatActivity {
 
                 String groupId = groupRef.push().getKey();
 
-                List<User> users = new ArrayList<>();
+                ArrayList<User> users = new ArrayList<>();
                 users.add(owner);
 
                 String slug = UUID.randomUUID().toString().substring(0, 6);

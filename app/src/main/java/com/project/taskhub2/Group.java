@@ -8,7 +8,7 @@ public class Group {
     String name;
     String description;
     User owner;
-    List<User> users;
+    ArrayList<User> users;
     int membersCount;
     String slug;
 
@@ -26,7 +26,7 @@ public class Group {
         this.users.add(this.owner);
     }
 
-    public Group(String id, String name, String description, User owner, int membersCount, String slug, List<User> users) {
+    public Group(String id, String name, String description, User owner, int membersCount, String slug, ArrayList<User> users) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -52,11 +52,11 @@ public class Group {
         this.owner = owner;
     }
 
-    public List<User> getUsers() {
+    public ArrayList<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(ArrayList<User> users) {
         this.users = users;
     }
 
