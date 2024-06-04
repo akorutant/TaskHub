@@ -16,6 +16,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -66,7 +73,34 @@ public class MyGroupsFragment extends Fragment {
                         Log.i("Long click", "ECHKEREEE");
                     }
                 })
+
         );
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        DatabaseReference groupRef = FirebaseDatabase.getInstance().getReference("Group");
+
+        groupRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                groups.clear();
+
+                for (DataSnapshot groupSnapshot : dataSnapshot.getChildren()) {
+                    Group group = groupSnapshot.getValue(Group.class);
+                    assert group != null;
+                    if (group.getOwner().getId().equals(currentUser.getUid()) || group.getUsers().stream().anyMatch(user -> user.getId().equals(currentUser.getUid()))) {
+                        groups.add(group);
+                    }
+                }
+
+                groupsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
 
         rotateClose = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_cloe_anim);
         rotateOpen = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_open_anim);
@@ -86,14 +120,14 @@ public class MyGroupsFragment extends Fragment {
         });
 
 
-        /*
-        createOrJoinBtn.setOnClickListener(new View.OnClickListener() {
+
+        createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), CreateGroupActivity.class));
             }
         });
-         */
+
 
 
 
