@@ -29,11 +29,11 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/secondary"
         app:menu="@menu/bottom_nav"
-        app:itemTextColor="@color/main_text"
-        app:itemIconTint="@color/main_text"
+        app:itemTextColor="@drawable/bottom_navbar_color"
+        app:itemIconTint="@drawable/bottom_navbar_color"
         app:itemIconSize="30dp"
-        app:itemRippleColor="@color/primary"
-        />
+        app:itemRippleColor="@color/primary_opacity"
+        app:itemActiveIndicatorStyle="@color/primary_opacity"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

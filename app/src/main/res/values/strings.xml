@@ -28,4 +28,6 @@
     <string name="settings">Settings</string>
     <string name="main_menu">Main menu</string>
     <string name="groups">Groups</string>
+    <string name="tasks">Tasks</string>
+    <string name="members">Members</string>
 </resources>
