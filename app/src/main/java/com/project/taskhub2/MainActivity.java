@@ -9,6 +9,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +32,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    public FirebaseAuth firebaseAuth;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -43,12 +45,14 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference taskRef = database.getReference("Task");
         DatabaseReference groupRef = database.getReference("Group");
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null) startActivity(new Intent(this, LoginActivity.class));
 
+        String username = firebaseAuth.getCurrentUser().getDisplayName();
+        String email = firebaseAuth.getCurrentUser().getEmail();
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
-        setNewFragment(new MainFragment());
+        setNewFragment(new MainFragment(), null);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
 
         bottomNavigationView.setSelectedItemId(R.id.nav_main);
@@ -56,13 +60,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.nav_settings) {
-                    setNewFragment(new GroupFragment());
+                    Bundle bundle = new Bundle();
+                    bundle.putString("username", username);
+                    bundle.putString("email", email);
+                    Log.i("BUNDLE", bundle.getString("username"));
+                    setNewFragment(new SettingsFragment(), bundle);
                 }
                 else if (item.getItemId() == R.id.nav_main) {
-                    setNewFragment(new MainFragment());
+                    setNewFragment(new MainFragment(), null);
                 }
                 else if (item.getItemId() == R.id.nav_groups) {
-                    setNewFragment(new MyGroupsFragment());
+                    setNewFragment(new MyGroupsFragment(), null);
                 }
                 else {
                     return false;
@@ -82,9 +90,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setNewFragment(Fragment fragment) {
+    public void setNewFragment(Fragment fragment, Bundle bundle) {
+        if (bundle != null) fragment.setArguments(bundle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout, fragment);
         ft.commit();
+    }
+
+    public FirebaseAuth getFirebaseAuth() {
+        return firebaseAuth;
     }
 }

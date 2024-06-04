@@ -102,6 +102,7 @@ class LoginActivity: AppCompatActivity() {
                         startActivity(Intent(context, MainActivity::class.java))
                         Toast.makeText(context, "Добро пожаловать!", Toast.LENGTH_SHORT).show()
                         Log.i("Auth Google", "successful")
+                        finish()
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
