@@ -19,4 +19,9 @@
     <string name="group_name">Название группы</string>
     <string name="group_s_bio">Описание группы</string>
     <string name="limit_of_members">Количество участников</string>
+    <string name="task_completed">Задача выполнена</string>
+    <string name="edit_task">Редактировать</string>
+    <string name="take_this_task">Взяться за выполнение</string>
+    <string name="edit_task_header">Редактировать</string>
+    <string name="confirm_changes">Подтвердить изменения</string>
 </resources>
