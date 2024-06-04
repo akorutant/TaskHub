@@ -37,4 +37,9 @@
     <string name="join_group">Join group</string>
     <string name="logout_btn">Logout</string>
     <string name="options">Options</string>
+    <string name="enter_the_group">Enter the group</string>
+    <string name="enter_the_invite_code">Enter the invite code</string>
+    <string name="enter">Enter</string>
+    <string name="codegroup">c1o2odo3odeee</string>
+    <string name="create_task">Create task</string>
 </resources>

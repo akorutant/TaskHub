@@ -85,16 +85,18 @@ public class MyGroupsFragment extends Fragment {
             }
         });
 
-
-        /*
-        createOrJoinBtn.setOnClickListener(new View.OnClickListener() {
+        createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), CreateGroupActivity.class));
             }
         });
-         */
-
+        joinBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), JoinGroupActivity.class));
+            }
+        });
 
 
         return v;

@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/BackgroundLayout">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout style="@style/CardLayout">
+
+            <TextView style="@style/HeaderTextView"
+                android:text="@string/enter_the_group" />
+
+            <EditText style="@style/EditTextStyle"
+                android:id="@+id/groupCode"
+                android:hint="@string/enter_the_invite_code"
+                android:backgroundTint="@color/text_muted"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button style="@style/PrimaryButton"
+        android:id="@+id/joinBtn"
+        android:text="@string/enter" />
+
+
+</LinearLayout>
