@@ -133,7 +133,7 @@ public class MyGroupsFragment extends Fragment {
             }
         });
 
-        
+
         return v;
     }
 

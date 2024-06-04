@@ -40,4 +40,8 @@
     <string name="enter">Enter</string>
     <string name="codegroup">c1o2odo3odeee</string>
     <string name="create_task">Create task</string>
+    <string name="already_in_group">You already in this group!</string>
+    <string name="to_many_group_users">To many users in group!</string>
+    <string name="not_found_group">Not found group!</string>
+    <string name="code_empty">Code is empty!</string>
 </resources>
