@@ -37,14 +37,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference("User ");
+        DatabaseReference taskRef = database.getReference("Task");
+        DatabaseReference groupRef = database.getReference("Group");
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null) startActivity(new Intent(this, LoginActivity.class));
 
-        // init Firebase Database
-        FirebaseApp.initializeApp(this);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference();
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
         setNewFragment(new MainFragment());

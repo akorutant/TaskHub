@@ -62,4 +62,5 @@ dependencies {
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
     implementation("androidx.credentials:credentials:1.3.0-alpha04")
     implementation("com.google.code.gson:gson:2.8.9")
+    implementation("com.google.gms:google-services:4.4.2")
 }

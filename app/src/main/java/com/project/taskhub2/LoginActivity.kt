@@ -13,11 +13,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.MainScope
-import java.time.Duration
 
 class LoginActivity: AppCompatActivity() {
     val coroutineScope = MainScope()
@@ -76,9 +80,35 @@ class LoginActivity: AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if(it.isSuccessful) {
-                startActivity(Intent(context, MainActivity::class.java))
-                Toast.makeText(context, "Добро пожаловать!", Toast.LENGTH_SHORT).show()
-                Log.i("Auth Google", "successful")
+                val firebaseUser = auth.currentUser
+
+                FirebaseApp.initializeApp(this)
+                val database = FirebaseDatabase.getInstance()
+                val userRef = database.getReference("User")
+
+                val nick = firebaseUser?.displayName
+                val email = firebaseUser?.email
+
+                val uid = firebaseUser?.uid
+
+                userRef.orderByChild("id").equalTo(uid).addListenerForSingleValueEvent(object :
+                    ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if(!dataSnapshot.exists()) {
+                            val user = User(uid, nick ?: "", email ?: "")
+                            userRef.push().setValue(user)
+                        }
+
+                        startActivity(Intent(context, MainActivity::class.java))
+                        Toast.makeText(context, "Добро пожаловать!", Toast.LENGTH_SHORT).show()
+                        Log.i("Auth Google", "successful")
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        Log.i("Auth Google", "failed")
+                    }
+                })
+
             } else {
                 Log.i("Auth Google", "failed")
             }
