@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,24 +17,26 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
 
     public final LayoutInflater inflater;
     private final List<Group> groups;
-    private final List<Task> groupTasks;
 
-    public GroupAdapter(Context context, List<Group> groups, List<Task> groupTasks) {
+//    private final List<Task> groupTasks;
+
+    public GroupAdapter(Context context, List<Group> groups) {
         this.groups = groups;
         this.inflater = LayoutInflater.from(context);
-        this.groupTasks = groupTasks;
+//        this.groupTasks = groupTasks;
     }
 
-    public GroupAdapter(LayoutInflater inflater, List<Group> groups, List<Task> groupTasks) {
+    public GroupAdapter(LayoutInflater inflater, List<Group> groups) {
         this.inflater = inflater;
         this.groups = groups;
-        this.groupTasks = groupTasks;
+//        this.groupTasks = groupTasks;
     }
 
     @NonNull
     @Override
     public GroupAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.task_item, parent, false);
+        View view = inflater.inflate(R.layout.group_item, parent, false);
+
         return new GroupAdapter.ViewHolder(view);
     }
 
@@ -44,16 +47,17 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         holder.groupName.setText(group.getName());
         holder.peopleCount.setText(String.valueOf(group.users.length));
 
-        List<Task> filteredTasks = groupTasks.stream()
-                .filter(task -> task.getGroup().getId().equals(group.getId()))
-                .collect(Collectors.toList());
+//        List<Task> filteredTasks = groupTasks.stream()
+//                .filter(task -> task.getGroup().getId().equals(group.getId()))
+//                .collect(Collectors.toList());
+//
+//        holder.tasksCount.setText(String.valueOf(filteredTasks.size()));
+//
+//        int completedTasksCount = (int) filteredTasks.stream()
+//                .filter(Task::getCompleted)
+//                .count();
+//        holder.completedTasks.setText(String.valueOf(completedTasksCount));
 
-        holder.tasksCount.setText(String.valueOf(filteredTasks.size()));
-
-        int completedTasksCount = (int) filteredTasks.stream()
-                .filter(Task::getCompleted)
-                .count();
-        holder.completedTasks.setText(String.valueOf(completedTasksCount));
     }
 
 

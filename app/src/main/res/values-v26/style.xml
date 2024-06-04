@@ -105,7 +105,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:layout_gravity">end|center</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textColor">@color/main_text</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="PrimaryInfoTextView">

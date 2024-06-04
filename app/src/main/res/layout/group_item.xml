@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
-        android:backgroundTint="@color/secondary">
+        android:backgroundTint="@color/secondary"
+        android:layout_marginVertical="7dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,13 +37,16 @@
                     android:layout_gravity="start|center"
                     android:layout_weight="1"/>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center"
-                    android:text="Go to the group"
+                    android:text="@string/go_to_the_group"
                     style="@style/PrimaryButton"
-                    android:layout_margin="5dp"/>
+                    android:layout_margin="5dp"
+                    app:icon="@drawable/enter_icon"
+                    app:iconTint="@color/background"
+                    app:iconSize="30dp"/>
 
             </LinearLayout>
 
@@ -69,11 +73,13 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_weight="1">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/group_icon"
-                                android:layout_marginHorizontal="5dp"/>
+                                android:layout_marginHorizontal="5dp"
+                                android:src="@drawable/group_icon" />
+
                             <TextView
                                 android:id="@+id/people_count_tv"
                                 android:layout_width="wrap_content"
@@ -82,7 +88,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="end|center"
                                 android:textSize="20sp"
-                                android:textColor="@color/text_muted"
+                                android:textColor="@color/main_text"
                                 android:textStyle="bold"/>
 
                         </LinearLayout>
@@ -103,7 +109,8 @@
                                 android:text="34"/>
                             <TextView
                                 style="@style/InfoTextView"
-                                android:text=" | "/>
+                                android:text=" | "
+                                android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/tasks_to_complete_count_tv"
                                 android:layout_width="wrap_content"
@@ -122,17 +129,9 @@
 
                 </androidx.cardview.widget.CardView>
 
-
-
-
-
-
             </LinearLayout>
 
-
         </LinearLayout>
-
-
 
     </androidx.cardview.widget.CardView>
 
