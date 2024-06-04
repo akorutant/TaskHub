@@ -81,18 +81,40 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/logoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/DangerButton"
-            android:text="@string/logout"
-            app:icon="@drawable/logout_bracket_svgrepo_com"
-            app:iconSize="30dp"
-            app:iconGravity="textStart"
-            app:iconTint="@color/white"/>
-
-
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/optionsBtn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/danger"
+            android:contentDescription="@string/logout_btn"
+            android:visibility="invisible"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/logout_bracket_svgrepo_com" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/optionsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/baseline_more_horiz_24"
+            android:contentDescription="@string/options"
+            android:backgroundTint="@color/primary"
+            />
+    </RelativeLayout>
 
 </FrameLayout>

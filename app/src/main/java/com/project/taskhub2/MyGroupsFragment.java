@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -24,6 +26,10 @@ public class MyGroupsFragment extends Fragment {
 
     RecyclerView recyclerView;
     GroupAdapter groupsAdapter;
+    boolean clicked;
+    FloatingActionButton createOrJoinBtn, createBtn, joinBtn;
+
+    Animation rotateOpen, rotateClose, toBottom, fromBottom;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,15 +40,6 @@ public class MyGroupsFragment extends Fragment {
         groupsAdapter = new GroupAdapter(this.getContext(), groups);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(groupsAdapter);
-        FloatingActionButton createOrJoinGroup = v.findViewById(R.id.createOrJoinGroup);
-
-        createOrJoinGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), CreateGroupActivity.class));
-            }
-        });
-
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this.getContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -71,10 +68,65 @@ public class MyGroupsFragment extends Fragment {
                 })
         );
 
+        rotateClose = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_cloe_anim);
+        rotateOpen = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_open_anim);
+        fromBottom = AnimationUtils.loadAnimation(getContext(), R.anim.from_bottom_anim);
+        toBottom = AnimationUtils.loadAnimation(getContext(), R.anim.to_bottom_anim);
+
+        createOrJoinBtn = v.findViewById(R.id.createOrJoinGroup);
+        createBtn = v.findViewById(R.id.createGroup);
+        joinBtn = v.findViewById(R.id.joinGroup);
+        clicked = false;
+
+        createOrJoinBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsButtonClicked();
+            }
+        });
+
+
+        /*
+        createOrJoinBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), CreateGroupActivity.class));
+            }
+        });
+         */
+
+
+
         return v;
     }
 
     private void setInitialData(){
 
+    }
+
+    private void onOptionsButtonClicked() {
+        setVisibility(clicked);
+        setAnimation(clicked);
+        clicked = !clicked;
+    }
+    private void setVisibility(boolean clicked) {
+        if (!clicked) {
+            createBtn.setVisibility(View.VISIBLE);
+            joinBtn.setVisibility(View.VISIBLE);
+        } else {
+            createBtn.setVisibility(View.INVISIBLE);
+            joinBtn.setVisibility(View.INVISIBLE);
+        }
+    }
+    private void setAnimation(boolean clicked) {
+        if (!clicked) {
+            createBtn.startAnimation(fromBottom);
+            joinBtn.startAnimation(fromBottom);
+            createOrJoinBtn.startAnimation(rotateOpen);
+        } else {
+            createBtn.startAnimation(toBottom);
+            joinBtn.startAnimation(toBottom);
+            createOrJoinBtn.startAnimation(rotateClose);
+        }
     }
 }

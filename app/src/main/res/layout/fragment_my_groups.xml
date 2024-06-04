@@ -39,6 +39,40 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/createGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/joinGroup"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="568dp"
+            android:backgroundTint="@color/secondary"
+            android:contentDescription="@string/create_new_group"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/baseline_add_24"
+            android:visibility="invisible"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/joinGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/createOrJoinGroup"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="568dp"
+            android:backgroundTint="@color/secondary"
+            android:contentDescription="@string/join_group"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/enter_icon"
+            android:visibility="invisible"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/createOrJoinGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,8 +80,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/enter_icon"
-            android:contentDescription="@string/create_task_text"
+            app:srcCompat="@drawable/baseline_more_horiz_24"
+            android:contentDescription="@string/create_new_group_or_join"
             android:backgroundTint="@color/primary"
             />
     </RelativeLayout>
