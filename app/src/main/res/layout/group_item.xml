@@ -37,16 +37,6 @@
                     android:layout_gravity="start|center"
                     android:layout_weight="1"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|center"
-                    android:text="@string/go_to_the_group"
-                    style="@style/PrimaryButton"
-                    android:layout_margin="5dp"
-                    app:icon="@drawable/enter_icon"
-                    app:iconTint="@color/background"
-                    app:iconSize="30dp"/>
 
             </LinearLayout>
 

@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setNewFragment(Fragment fragment) {
+    public void setNewFragment(Fragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout, fragment);
         ft.commit();
