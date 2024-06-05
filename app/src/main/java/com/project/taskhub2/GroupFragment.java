@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,13 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -34,6 +45,9 @@ public class GroupFragment extends Fragment {
 
     ArrayList<User> users;
     boolean clicked;
+    private GroupTasksFragment groupTasksFragment;
+    private GroupMembersFragment groupMembersFragment;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +65,38 @@ public class GroupFragment extends Fragment {
             Bundle bundle1 = new Bundle();
             bundle1.putStringArrayList("userIds", userIds);
         }
+
+
+        tabLayout = v.findViewById(R.id.tabLayout);
+        ViewPager viewPager = v.findViewById(R.id.viewPager);
+
+        groupTasksFragment = new GroupTasksFragment();
+        groupMembersFragment = new GroupMembersFragment();
+
+        groupTasksFragment.setArguments(bundle);
+        groupMembersFragment.setArguments(bundle);
+        viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                if (position == 0) {
+                    return groupTasksFragment;
+                } else if (position == 1) {
+                    return groupMembersFragment;
+                }
+                return null;
+            }
+
+            @Override
+            public int getCount() {
+                // Теперь у нас две вкладки
+                return 2;
+            }
+        });
+
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setText(R.string.tasks);
+        tabLayout.getTabAt(1).setText(R.string.members);
+
 
         rotateClose = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_cloe_anim);
         rotateOpen = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_open_anim);
@@ -79,9 +125,61 @@ public class GroupFragment extends Fragment {
         logoutGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: сделать выход из группы (ЕСЛИ ЭТО ВЛАДЕЛЕЦ - УДАЛЯТЬ ГРУППУ К .!.-уям собачьим
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference groupRef = FirebaseDatabase.getInstance().getReference("Group");
+                if (groupId == null) {
+                    // Не удалось получить идентификатор группы, выходим из метода
+                    return;
+                }
+
+                groupRef.child(groupId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()) {
+                            // Группа не найдена, выходим из метода
+                            return;
+                        }
+
+                        Group group = dataSnapshot.getValue(Group.class);
+
+                        // Удаляем текущего пользователя из списка пользователей группы
+                        User currentUserUser = null;
+                        for (User user : group.getUsers()) {
+                            if (user.getId().equals(currentUser.getUid())) {
+                                currentUserUser = user;
+                                break;
+                            }
+                        }
+                        if (currentUserUser != null) {
+                            group.getUsers().remove(currentUserUser);
+                        }
+
+                        // Если владелец группы выходит из нее, удаляем группу из базы данных
+                        if (group.getOwner().getId().equals(currentUser.getUid())) {
+                            dataSnapshot.getRef().removeValue();
+                        } else {
+                            // Сохраняем изменения в базе данных
+                            dataSnapshot.getRef().child("users").setValue(group.getUsers());
+                        }
+
+                        MyGroupsFragment myGroupsFragment = new MyGroupsFragment();
+
+
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.frameLayout, myGroupsFragment);
+                        ft.commit();
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Обрабатываем ошибку
+                    }
+                });
             }
         });
+
 
         // TODO: сделать логику переключения pager между фрагментами
 
@@ -89,12 +187,12 @@ public class GroupFragment extends Fragment {
     }
 
     private void setInitialData() {
-        User user1 = new User("1", "user1", "mail@mail.ma");
-        User user2 = new User("2", "user222", "maiffl@madfsil.ma");
-        User user3 = new User("3", "user33333", "fdfd@mafdsfil.ma");
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
+//        User user1 = new User("1", "user1", "mail@mail.ma");
+//        User user2 = new User("2", "user222", "maiffl@madfsil.ma");
+//        User user3 = new User("3", "user33333", "fdfd@mafdsfil.ma");
+//        users.add(user1);
+//        users.add(user2);
+//        users.add(user3);
     }
 
     private void onOptionsButtonClicked() {
