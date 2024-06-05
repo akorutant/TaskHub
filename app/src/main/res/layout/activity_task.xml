@@ -144,7 +144,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/DangerButton"
-        android:text="Delete Task"
+        android:text="@string/delete_task"
         app:icon="@drawable/baseline_auto_delete_24"
         app:iconTint="@color/white"
         app:iconSize="30dp"
