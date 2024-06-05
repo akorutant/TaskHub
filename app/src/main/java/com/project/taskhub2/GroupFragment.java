@@ -3,6 +3,7 @@ package com.project.taskhub2;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -17,6 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -31,15 +33,16 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.UUID;
 
 
 public class GroupFragment extends Fragment {
 
     TabLayout tabLayout;
     FrameLayout frameLayout;
-    TextView groupName;
+    TextView groupName, groupCode;
     String groupId;
-    FloatingActionButton createTaskButton, logoutGroupBtn, optionsBtn;
+    FloatingActionButton createTaskButton, logoutGroupBtn, optionsBtn, refreshBtn;
 
     Animation rotateOpen, rotateClose, toBottom, fromBottom;
 
@@ -47,6 +50,10 @@ public class GroupFragment extends Fragment {
     boolean clicked;
     private GroupTasksFragment groupTasksFragment;
     private GroupMembersFragment groupMembersFragment;
+    FirebaseDatabase database;
+    DatabaseReference groupRef;
+    FirebaseAuth auth;
+    FirebaseUser user;
 
 
     @Override
@@ -66,6 +73,26 @@ public class GroupFragment extends Fragment {
             bundle1.putStringArrayList("userIds", userIds);
         }
 
+        database = FirebaseDatabase.getInstance();
+        groupRef = database.getReference("Group").child(groupId);
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        groupCode = v.findViewById(R.id.groupCodeTv);
+        groupRef.child("slug").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String slug = snapshot.getValue(String.class);
+                    groupCode.setText(slug);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         tabLayout = v.findViewById(R.id.tabLayout);
         ViewPager viewPager = v.findViewById(R.id.viewPager);
@@ -97,7 +124,6 @@ public class GroupFragment extends Fragment {
         tabLayout.getTabAt(0).setText(R.string.tasks);
         tabLayout.getTabAt(1).setText(R.string.members);
 
-
         rotateClose = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_cloe_anim);
         rotateOpen = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_open_anim);
         fromBottom = AnimationUtils.loadAnimation(getContext(), R.anim.from_bottom_anim);
@@ -106,6 +132,7 @@ public class GroupFragment extends Fragment {
         optionsBtn = v.findViewById(R.id.groupOptionsBtn);
         logoutGroupBtn = v.findViewById(R.id.logoutGroupBtn);
         createTaskButton = v.findViewById(R.id.createTask);
+        refreshBtn = v.findViewById(R.id.refreshBtn);
         clicked = false;
 
         optionsBtn.setOnClickListener(new View.OnClickListener() {
@@ -180,19 +207,17 @@ public class GroupFragment extends Fragment {
             }
         });
 
-
-        // TODO: сделать логику переключения pager между фрагментами
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newCode = generateNewCode();
+                groupRef.child("slug").setValue(newCode);
+                groupCode.setText(newCode);
+                Toast.makeText(getContext(), "Код группы обновлен!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return v;
-    }
-
-    private void setInitialData() {
-//        User user1 = new User("1", "user1", "mail@mail.ma");
-//        User user2 = new User("2", "user222", "maiffl@madfsil.ma");
-//        User user3 = new User("3", "user33333", "fdfd@mafdsfil.ma");
-//        users.add(user1);
-//        users.add(user2);
-//        users.add(user3);
     }
 
     private void onOptionsButtonClicked() {
@@ -204,20 +229,31 @@ public class GroupFragment extends Fragment {
         if (!clicked) {
             createTaskButton.setVisibility(View.VISIBLE);
             logoutGroupBtn.setVisibility(View.VISIBLE);
+            if (user.getUid().equals(groupRef.child("owner").child("id").toString())) {
+                refreshBtn.setVisibility(View.VISIBLE);
+            }
         } else {
             createTaskButton.setVisibility(View.INVISIBLE);
             logoutGroupBtn.setVisibility(View.INVISIBLE);
+            refreshBtn.setVisibility(View.INVISIBLE);
         }
     }
     private void setAnimation(boolean clicked) {
         if (!clicked) {
             createTaskButton.startAnimation(fromBottom);
             logoutGroupBtn.startAnimation(fromBottom);
+            refreshBtn.startAnimation(fromBottom);
             optionsBtn.startAnimation(rotateOpen);
         } else {
             createTaskButton.startAnimation(toBottom);
             logoutGroupBtn.startAnimation(toBottom);
+            refreshBtn.startAnimation(toBottom);
             optionsBtn.startAnimation(rotateClose);
         }
+    }
+
+    private String generateNewCode() {
+        String code = UUID.randomUUID().toString().substring(0, 6);
+        return code;
     }
 }

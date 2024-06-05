@@ -70,6 +70,22 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/refreshBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/logoutGroupBtn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/secondary"
+            android:contentDescription="@string/refresh_group_code"
+            android:visibility="invisible"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/baseline_autorenew_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/logoutGroupBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
