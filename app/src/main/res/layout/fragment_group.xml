@@ -7,58 +7,6 @@
     tools:context=".GroupFragment"
     style="@style/BackgroundLayout">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/logoutGroupBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/createTask"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/secondary"
-            android:contentDescription="@string/logout_btn"
-            android:visibility="invisible"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/logout_bracket_svgrepo_com" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/createTask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/groupOptionsBtn"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/secondary"
-            android:contentDescription="@string/create_task"
-            android:visibility="invisible"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/baseline_add_24" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/groupOptionsBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/baseline_more_horiz_24"
-            android:contentDescription="@string/options"
-            android:backgroundTint="@color/primary"
-            app:rippleColor="@color/background" />
-    </RelativeLayout>
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -113,9 +61,59 @@
             android:id="@+id/viewPager"
             android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/logoutGroupBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/createTask"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/secondary"
+            android:contentDescription="@string/logout_btn"
+            android:visibility="invisible"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/logout_bracket_svgrepo_com" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/createTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/groupOptionsBtn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/secondary"
+            android:contentDescription="@string/create_task"
+            android:visibility="invisible"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/baseline_add_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/groupOptionsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/baseline_more_horiz_24"
+            android:contentDescription="@string/options"
+            android:backgroundTint="@color/primary"
+            app:rippleColor="@color/background" />
+    </RelativeLayout>
 
 
 
