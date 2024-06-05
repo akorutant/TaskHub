@@ -32,6 +32,7 @@
         android:layout_marginBottom="10dp"/>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/someonetake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp">
@@ -100,8 +101,41 @@
             app:iconSize="30dp"
             android:layout_marginLeft="5dp" />
 
-
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/completion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:id="@+id/success_lay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/BackgroundLayout"
+            android:background="@color/secondary"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_alarm_on_24"
+                android:backgroundTint="@color/text_muted"
+                app:tint="@color/checkbox_button_checked" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Задача выполнена"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textColor="@color/text_muted"/>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 

@@ -97,7 +97,8 @@ public class CreateTaskActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Group group = dataSnapshot.getValue(Group.class);
-                            Task task = new Task(taskId, taskTitle.getText().toString(), taskDescription.getText().toString(), user, group);
+                            User nullWorker = new User("NULL", "NULL", "NULL");
+                            Task task = new Task(taskId, taskTitle.getText().toString(), taskDescription.getText().toString(), user, group, false, nullWorker);
 
                             assert taskId != null;
                             taskRef.child(taskId).setValue(task);

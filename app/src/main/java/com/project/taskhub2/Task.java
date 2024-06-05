@@ -44,6 +44,20 @@ public class Task {
         this.createdOn = new Date(timestamp.getTime());
     }
 
+    public Task(String id, String name, String text, User author, Group group, Boolean completed, User worker) {
+        this.id = id;
+        this.name = name;
+        this.text = text;
+        this.author = author;
+        this.group = group;
+        this.deadline = deadline;
+        this.completed = completed;
+        this.worker = worker;
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.createdOn = new Date(timestamp.getTime());
+    }
+
     public void setName(String name) {
         this.name = name;
     }
