@@ -17,6 +17,10 @@ public class Task {
 
     User worker;
 
+    public Task() {
+        // You can leave it empty or initialize your variables with default values
+    }
+
     public Task(String id, String name, String text, User author, Group group) {
         this.id = id;
         this.name = name;
