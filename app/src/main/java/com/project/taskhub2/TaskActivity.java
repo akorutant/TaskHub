@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 import java.util.Objects;
 
 public class TaskActivity extends AppCompatActivity {
-    Button takeTaskButton, taskCompletedButton, editTaskButton;
+    Button takeTaskButton, taskCompletedButton, editTaskButton, deleteBtn;
     FirebaseDatabase database;
     DatabaseReference taskRef;
     FirebaseAuth auth;
@@ -47,6 +47,7 @@ public class TaskActivity extends AppCompatActivity {
         completion = findViewById(R.id.completion);
         workerInfo = findViewById(R.id.workerInfo);
         someonetake = findViewById(R.id.someonetake);
+        deleteBtn = findViewById(R.id.deleteTask);
 
         Gson gson = new Gson();
         String taskJson = getIntent().getStringExtra("task_info");
@@ -67,6 +68,8 @@ public class TaskActivity extends AppCompatActivity {
                         takeTaskButton.setVisibility(View.GONE);
                         taskCompletedButton.setVisibility(View.GONE);
                         editTaskButton.setVisibility(View.GONE);
+                        someonetake.setVisibility(View.GONE);
+                        deleteBtn.setVisibility(View.VISIBLE);
                     }
                 }
             }
@@ -111,16 +114,6 @@ public class TaskActivity extends AppCompatActivity {
         TextView taskDescriptionTextView = findViewById(R.id.taskDescription);
         taskDescriptionTextView.setText(task.getText());
 
-//        if (!task.isSelect) {
-//            workerLayout.setVisibility(View.GONE);
-//        } else {
-//            takeTaskButton.setVisibility(View.GONE);
-//            taskCompletedButton.setVisibility(View.GONE);
-//            editTaskButton.setVisibility(View.GONE);
-//
-//            workerInfo.setText("> " + task.worker.getName());
-//        }
-
         editTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +145,15 @@ public class TaskActivity extends AppCompatActivity {
                     takeTaskButton.setText("Вы взялись за эту задачу");
                 }
 
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                taskRef.removeValue();
+                Toast.makeText(getApplicationContext(), "Задача удалена!", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 

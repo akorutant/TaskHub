@@ -137,6 +137,16 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/deleteTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/DangerButton"
+        android:text="Delete Task"
+        app:icon="@drawable/baseline_auto_delete_24"
+        app:iconTint="@color/white"
+        app:iconSize="30dp"
+        android:visibility="gone"
+        android:layout_marginLeft="5dp" />
 
 </LinearLayout>
