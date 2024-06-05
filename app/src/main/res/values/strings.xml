@@ -45,4 +45,5 @@
     <string name="not_found_group">Not found group!</string>
     <string name="code_empty">Code is empty!</string>
     <string name="refresh_group_code">Refresh group code</string>
+    <string name="delete_task">Delete Task</string>
 </resources>

@@ -37,7 +37,7 @@ public class EditTaskActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         taskRef = database.getReference("Task").child(task.id);
 
-        taskRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+        taskRef.child("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -65,6 +65,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
             }
         });
+
 
         commitBtn.setOnClickListener(new View.OnClickListener() {
             @Override

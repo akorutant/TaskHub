@@ -45,4 +45,6 @@
     <string name="to_many_group_users">Группа заполнена!</string>
     <string name="not_found_group">Группа не найдена!</string>
     <string name="code_empty">Вы не указали код!</string>
+    <string name="refresh_group_code">Обновить код группы</string>
+    <string name="delete_task">Удалить задачу</string>
 </resources>
