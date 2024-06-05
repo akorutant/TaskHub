@@ -53,6 +53,4 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         }
 
     }
-
-
 }

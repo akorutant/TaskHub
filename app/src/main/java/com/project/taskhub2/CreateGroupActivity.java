@@ -22,7 +22,6 @@ public class CreateGroupActivity extends AppCompatActivity {
     EditText groupTitle, groupBio, groupMembersCount;
     Button submitButton;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-
     DatabaseReference groupRef = database.getReference("Group");
 
     @Override

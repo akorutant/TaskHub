@@ -115,7 +115,6 @@ public class GroupFragment extends Fragment {
 
             @Override
             public int getCount() {
-                // Теперь у нас две вкладки
                 return 2;
             }
         });
@@ -181,7 +180,7 @@ public class GroupFragment extends Fragment {
                             group.getUsers().remove(currentUserUser);
                         }
 
-                        // Если владелец группы выходит из нее, удаляем группу из базы данных
+                        // Если владелец группы выходит из нее, удаляем группу из базы данных к чертям
                         if (group.getOwner().getId().equals(currentUser.getUid())) {
                             dataSnapshot.getRef().removeValue();
                         } else {
@@ -195,13 +194,11 @@ public class GroupFragment extends Fragment {
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.frameLayout, myGroupsFragment);
                         ft.commit();
-
-
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        // Обрабатываем ошибку
+
                     }
                 });
             }

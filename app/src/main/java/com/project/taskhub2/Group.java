@@ -12,8 +12,7 @@ public class Group {
     int membersCount;
     String slug;
 
-    public Group() {
-    }
+    public Group() {}
 
     public Group(String id, String name, String description, User owner, int membersCount, String slug) {
         this.id = id;

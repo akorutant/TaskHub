@@ -64,10 +64,6 @@ public class MainFragment extends Fragment {
         return v;
     }
 
-    private void setInitialData(){
-
-    }
-
     private void getUserTasks() {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference taskRef = FirebaseDatabase.getInstance().getReference("Task");
@@ -83,7 +79,6 @@ public class MainFragment extends Fragment {
                     }
                 }
 
-                // Обновляем список tasks и вызываем notifyDataSetChanged() у адаптера
                 tasks.clear();
                 tasks.addAll(userTasks);
                 taskAdapter.notifyDataSetChanged();
@@ -91,7 +86,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Обрабатываем ошибку
+
             }
         });
     }

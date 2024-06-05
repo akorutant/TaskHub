@@ -65,7 +65,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Обработка ошибки
+
             }
         });
     }

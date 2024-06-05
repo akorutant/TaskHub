@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/username"
         android:text="Username"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:layout_gravity="center"
         android:textColor="@color/text_muted"
         android:layout_marginRight="10dp"/>
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/email"
         android:text="email2006@google.com"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:layout_gravity="center"
         android:textColor="@color/text_muted"/>
 

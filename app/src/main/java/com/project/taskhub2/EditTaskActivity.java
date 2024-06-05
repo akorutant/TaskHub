@@ -22,6 +22,7 @@ public class EditTaskActivity extends AppCompatActivity {
     DatabaseReference taskRef;
     EditText taskTitle, taskDescription;
     Button commitBtn;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -29,7 +29,6 @@ public class GroupMembersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_group_members, container, false);
 
         Bundle bundle = this.getArguments();
@@ -39,7 +38,7 @@ public class GroupMembersFragment extends Fragment {
 
         if (groupId == null) {
             Log.e("GroupMembersFragment", "groupId is null");
-            return v; // или вывести сообщение об ошибке для пользователя
+            return v;
         }
 
         recyclerView = v.findViewById(R.id.groupMembersRecyclerView);
@@ -47,7 +46,6 @@ public class GroupMembersFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(userAdapter);
 
-        // Get users from Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference groupRef = database.getReference("Group").child(groupId).child("users");
         groupRef.addValueEventListener(new ValueEventListener() {

@@ -34,7 +34,6 @@ public class CreateTaskActivity extends AppCompatActivity {
     DatabaseReference taskRef = database.getReference("Task");
     DatabaseReference groupRef = database.getReference("Group");
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +98,15 @@ public class CreateTaskActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Group group = dataSnapshot.getValue(Group.class);
                             User nullWorker = new User("NULL", "NULL", "NULL");
-                            Task task = new Task(taskId, taskTitle.getText().toString(), taskDescription.getText().toString(), user, group, false, nullWorker);
+                            Task task = new Task(
+                                    taskId,
+                                    taskTitle.getText().toString(),
+                                    taskDescription.getText().toString(),
+                                    user,
+                                    group,
+                                    false,
+                                    nullWorker
+                            );
 
                             assert taskId != null;
                             taskRef.child(taskId).setValue(task);

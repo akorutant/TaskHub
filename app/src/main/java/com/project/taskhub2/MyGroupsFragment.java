@@ -42,7 +42,6 @@ public class MyGroupsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_my_groups, container, false);
 
-        setInitialData();
         recyclerView = v.findViewById(R.id.groupsRecycleView);
         groupsAdapter = new GroupAdapter(this.getContext(), groups);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -70,7 +69,7 @@ public class MyGroupsFragment extends Fragment {
 
                     @Override
                     public void onLongItemClick(View view, int position) {
-                        Log.i("Long click", "ECHKEREEE");
+
                     }
                 })
 
@@ -132,13 +131,7 @@ public class MyGroupsFragment extends Fragment {
                 startActivity(new Intent(getContext(), JoinGroupActivity.class));
             }
         });
-
-
         return v;
-    }
-
-    private void setInitialData(){
-
     }
 
     private void onOptionsButtonClicked() {

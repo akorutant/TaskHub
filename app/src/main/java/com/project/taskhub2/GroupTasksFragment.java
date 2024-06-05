@@ -37,7 +37,6 @@ public class GroupTasksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_group_tasks, container, false);
 
         recyclerView = v.findViewById(R.id.groupTaksRecyclerView);
@@ -70,7 +69,7 @@ public class GroupTasksFragment extends Fragment {
 
         if (groupId == null) {
             Log.e("GroupMembersFragment", "groupId is null");
-            return v; // или вывести сообщение об ошибке для пользователя
+            return v;
         }
 
         // Get tasks from Firebase
