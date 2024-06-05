@@ -33,7 +33,7 @@ public class TaskActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     CardView completion, someonetake;
-    TextView workerInfo;
+    TextView workerInfo, taskName, taskDescription;
 
     User currentWorker;
     @Override
@@ -48,6 +48,8 @@ public class TaskActivity extends AppCompatActivity {
         workerInfo = findViewById(R.id.workerInfo);
         someonetake = findViewById(R.id.someonetake);
         deleteBtn = findViewById(R.id.deleteTask);
+        taskName = findViewById(R.id.taskName);
+        taskDescription = findViewById(R.id.taskDescription);
 
         Gson gson = new Gson();
         String taskJson = getIntent().getStringExtra("task_info");
@@ -57,6 +59,35 @@ public class TaskActivity extends AppCompatActivity {
         taskRef = database.getReference("Task").child(task.getId());
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
+        taskRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String name = snapshot.getValue(String.class);
+                    taskName.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        taskRef.child("description").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String d = snapshot.getValue(String.class);
+                    taskDescription.setText(d);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         taskRef.child("completed").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -108,11 +139,11 @@ public class TaskActivity extends AppCompatActivity {
             }
         });
 
-        TextView taskNameTextView = findViewById(R.id.taskName);
-        taskNameTextView.setText(task.getName());
-
-        TextView taskDescriptionTextView = findViewById(R.id.taskDescription);
-        taskDescriptionTextView.setText(task.getText());
+//        TextView taskNameTextView = findViewById(R.id.taskName);
+//        taskNameTextView.setText(task.getName());
+//
+//        TextView taskDescriptionTextView = findViewById(R.id.taskDescription);
+//        taskDescriptionTextView.setText(task.getText());
 
         editTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
