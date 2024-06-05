@@ -29,13 +29,15 @@
         android:text="Some description"
         android:textSize="20dp"
         android:textColor="@color/text_muted"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/someonetake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/workerLayout"
