@@ -25,7 +25,7 @@ public class GroupTasksFragment extends Fragment {
     private TaskAdapter taskAdapter;
     private ArrayList<Task> tasks = new ArrayList<Task>();
     private DatabaseReference tasksRef;
-
+    String groupId;
     public GroupTasksFragment() {
         // Required empty public constructor
     }
@@ -41,6 +41,16 @@ public class GroupTasksFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(taskAdapter);
 
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            groupId = bundle.getString("groupId");
+        }
+
+        if (groupId == null) {
+            Log.e("GroupMembersFragment", "groupId is null");
+            return v; // или вывести сообщение об ошибке для пользователя
+        }
+
         // Get tasks from Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         tasksRef = database.getReference("Task");
@@ -50,7 +60,10 @@ public class GroupTasksFragment extends Fragment {
                 tasks.clear();
                 for (DataSnapshot taskSnapshot : dataSnapshot.getChildren()) {
                     Task task = taskSnapshot.getValue(Task.class);
-                    tasks.add(task);
+                    // проверяем, что groupId задачи совпадает с groupId группы
+                    if (task.getGroup() != null && task.getGroup().getId().equals(groupId)) {
+                        tasks.add(task);
+                    }
                 }
                 taskAdapter.notifyDataSetChanged();
             }
