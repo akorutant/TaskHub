@@ -10,7 +10,7 @@
     <string name="submit_task">Подтвердить</string>
     <string name="app_taskhub">TaskHub</string>
     <string name="create_task_text">Создать задачу</string>
-    <string name="current_tasks_text">Невыполненные задачи</string>
+    <string name="current_tasks_text">Взятые задачи</string>
     <string name="group_name_tv">Название группы</string>
     <string name="login_via_google_text">Войти через Google</string>
     <string name="error_sign_in">Ошибка или отменено</string>
