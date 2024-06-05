@@ -76,7 +76,7 @@ public class TaskActivity extends AppCompatActivity {
         });
         taskName.setText(task.getName());
         taskDescription.setText(task.getText());
-        taskRef.child("description").addListenerForSingleValueEvent(new ValueEventListener() {
+        taskRef.child("text").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {

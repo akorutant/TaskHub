@@ -51,7 +51,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
             }
         });
-        taskRef.child("description").addListenerForSingleValueEvent(new ValueEventListener() {
+        taskRef.child("text").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -71,7 +71,7 @@ public class EditTaskActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (taskTitle.getText().toString().length() >= 4 && taskDescription.getText().toString().length() >= 8) {
                     taskRef.child("name").setValue(taskTitle.getText().toString());
-                    taskRef.child("description").setValue(taskDescription.getText().toString());
+                    taskRef.child("text").setValue(taskDescription.getText().toString());
                     Toast.makeText(getApplicationContext(), "Успешно!", Toast.LENGTH_SHORT).show();
                     finish();
                 }
