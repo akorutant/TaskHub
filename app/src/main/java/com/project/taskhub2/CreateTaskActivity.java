@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -117,6 +118,7 @@ public class CreateTaskActivity extends AppCompatActivity {
                 }
                 else {
                     Log.i("FAIL", "Task Creation Fail: ");
+                    Toast.makeText(getApplicationContext(), "Мин. длина заголовка - 4 симв., Описания - 8 симв.", Toast.LENGTH_SHORT).show();
                     if (taskTitle.getText().toString().length() < 4) {
                         taskTitle.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.danger)));
                     }
