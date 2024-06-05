@@ -1,12 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.TaskHub2" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Base.Theme.TaskHub2" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="actionBarStyle">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary</item>
-
-
     </style>
-
-
+    a
     <style name="Theme.TaskHub2" parent="Base.Theme.TaskHub2" />
 </resources>
